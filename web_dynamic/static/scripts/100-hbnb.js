@@ -1,6 +1,6 @@
 $(document).ready(function () {
     let amenities = {};
-    $(document).on('change', ".amenities > .popover > li > input[type='checkbox']", function () {
+    $(document).on('change', ".amenities .popover input[type='checkbox']", function () {
         if (this.checked) {
             amenities[$(this).data('id')] = $(this).data('name');
         } else {
@@ -15,7 +15,7 @@ $(document).ready(function () {
     });
     let states = {};
     let locations = {};
-    $(document).on('change', ".locations > .popover > li > input[type='checkbox']", function () {
+    $(document).on('change', ".state_in", function () {
         if (this.checked) {
             states[$(this).data('id')] = $(this).data('name');
             locations[$(this).data('id')] = $(this).data('name');
@@ -31,7 +31,7 @@ $(document).ready(function () {
         }
     });
     let cities = {};
-    $(document).on('change', ".locations > .popover > li > ul > li > input[type='checkbox']", function () {
+    $(document).on('change', ".city_in", function () {
         if (this.checked) {
             cities[$(this).data('id')] = $(this).data('name');
             locations[$(this).data('id')] = $(this).data('name');
@@ -73,13 +73,15 @@ $('.filters > button').click(function (){
 $.ajax({
     type:'POST',
     url: 'http://0.0.0.0:5001/api/v1/places_search',
-    data: JSON.stringify({'amenities': Object.keys(dict)}),
+    data: JSON.stringify({amenities: Object.keys(amenities),
+                            states: Object.keys(states),
+                            cities: Object.keys(cities)}),
     dataType: 'json',
     contentType: 'application/json',
     success: function(data){
         for (let i = 0; i < data.length; i++){
             let place = data[i];
-            $('.places ').append('<article><h2>' + place.name + '</h2><div class="price_by_night"><p>$' + place.price_by_night + '</p></div><div class="information"><div class="max_guest"><div class="guest_image"></div><p>' +  place.max_guest + '</p></div><div class="number_rooms"><div class="bed_image"></div><p>' + place.number_rooms + '</p></div><div class="number_bathrooms"><div class="bath_image"></div><p>' + place.number_bathrooms + '</p></div></div><div class="description"><p>' + place.description + '</p></div></article>');
+            $('.places ').append('<article><h2>' + place.name + '</h2><div class="price_by_night"><p>$' + place.price_by_night + '</p></div><div class="information"><div class="max_guest"><div class="guest_image"></div><p>' + place.max_guest + '</p></div><div class="number_rooms"><div class="bed_image"></div><p>' + place.number_rooms + '</p></div><div class="number_bathrooms"><div class="bath_image"></div><p>' + place.number_bathrooms + '</p></div></div><div class="description"><p>' + place.description + '</p></div></article>');
         }
     }
 });
