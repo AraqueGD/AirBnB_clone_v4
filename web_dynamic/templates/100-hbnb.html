@@ -9,7 +9,7 @@
     <link type="text/css" rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}">
     <link rel="icon" href="../static/images/icon.png?{{ cache_id }}" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../static/scripts/4-hbnb.js?{{ cache_id }}"></script>
+    <script src="../static/scripts/100-hbnb.js?{{ cache_id }}"></script>
     <title>HBnB</title>
   </head>
   <body>
@@ -26,10 +26,10 @@
 	    <ul>
 	      {% for state in states %}
 	      <li>
-          <input type="checkbox" data-id="{{ state.id }}" data-name="{{ state.name }}"><h2>{{ state.name }}</h2>
+          <input type="checkbox" data-id="{{ state[0].id }}" data-name="{{ state[0].name }}" class="state_in"><h2>{{ state[0].name }}:</h2>
 		<ul>
 		  {% for city in state[1] %}
-      <li><input type="checkbox" data-id="{{ city.id }}" data-name="{{ city.name}}">{{ city.name }}</li>
+      <li><input type="checkbox" data-id="{{ city.id }}" data-name="{{ city.name}}" class="city_in">{{ city.name }}</li>
 		  {% endfor %}
 		</ul>
 	      </li>
@@ -53,7 +53,7 @@
 	</div>
 	<button type="button">Search</button>
       </section>
-      <div class="placesh1"><h1>Places</h1></div>
+      <div class="places"><h1>Places</h1></div>
       <section class="places">
       </section>
     </div>
