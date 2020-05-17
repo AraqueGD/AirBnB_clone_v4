@@ -4,17 +4,20 @@ header {
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
 }
-header > .logo {
+header .logo {
     background: url("../images/logo.png") no-repeat;
     left: 20px;
     height: 100%;
 }
 #api_status {
     margin-right: 30px;
+    margin-top: 15px;
     width: 40px;
     height: 40px;
     background-color: #cccccc;
     border-radius: 50%;
+    float: right;
+    display: inline-block;
 }
 #api_status.available {
     background-color: #ff545f;
